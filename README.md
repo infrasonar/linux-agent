@@ -14,6 +14,7 @@ Environment                 | Default                       | Description
 `ASSET_NAME`                | _none_                        | Initial Asset Name. This will only be used at the announce. Once the asset is created, `ASSET_NAME` will be ignored.
 `ASSET_ID`                  | _none_                        | Asset Id _(If not given, the asset Id will be stored and loaded from file)_.
 `API_URI`                   | https://api.infrasonar.com    | InfraSonar API.
+`SKIP_VERIFY`				| _none_						| Set to `1` or something else to skip certificate validation.
 `CHECK_SYSTEM_INTERVAL`     | `300`                         | Interval in seconds for the `system` check.
 
 
@@ -29,7 +30,7 @@ Ensure the binary is executable:
 chmod +x linux-agent
 ```
 
-Copy the binare to `/usr/sbin/infrasonar-linux-agent`
+Copy the binary to `/usr/sbin/infrasonar-linux-agent`
 
 ```
 $ sudo cp linux-agent /usr/sbin/infrasonar-linux-agent
