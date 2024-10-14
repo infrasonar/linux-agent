@@ -19,6 +19,22 @@ Environment                 | Default                       | Description
 
 ## Installation
 
+Download the latest release:
+```bash
+$ wget https://github.com/infrasonar/linux-agent/releases/download/v0.1.0-alpha0/linux-agent
+```
+
+Ensure the binary is executable:
+```
+chmod +x linux-agent
+```
+
+Copy the binare to `/usr/sbin/infrasonar-linux-agent`
+
+```
+$ sudo cp linux-agent /usr/sbin/infrasonar-linux-agent
+```
+
 ### Using Systemd
 
 ```bash
