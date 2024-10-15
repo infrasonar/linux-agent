@@ -18,11 +18,16 @@ Environment                 | Default                       | Description
 `CHECK_SYSTEM_INTERVAL`     | `300`                         | Interval in seconds for the `system` check.
 
 
+## Build
+```
+CGO_ENABLED=0 go build -o linux-agent
+```
+
 ## Installation
 
 Download the latest release:
 ```bash
-$ wget https://github.com/infrasonar/linux-agent/releases/download/v0.1.0-alpha0/linux-agent
+$ wget https://github.com/infrasonar/linux-agent/releases/download/v0.1.0/linux-agent
 ```
 
 Ensure the binary is executable:
@@ -82,3 +87,4 @@ View logging:
 ```bash
 $ journalctl -u infrasonar-linux-agent
 ```
+
