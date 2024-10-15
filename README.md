@@ -15,6 +15,7 @@ Environment                 | Default                       | Description
 `ASSET_ID`                  | _none_                        | Asset Id _(If not given, the asset Id will be stored and loaded from file)_.
 `API_URI`                   | https://api.infrasonar.com    | InfraSonar API.
 `SKIP_VERIFY`				| _none_						| Set to `1` or something else to skip certificate validation.
+`SYSLOG_PATH`               | `/var/log/syslog`             | Path to syslog file.
 `CHECK_SYSTEM_INTERVAL`     | `300`                         | Interval in seconds for the `system` check.
 
 

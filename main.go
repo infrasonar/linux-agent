@@ -28,7 +28,11 @@ func main() {
 	asset.Kind = "Linux"
 	asset.Announce()
 
+	//
 	// Create and plan checks
+	//
+
+	// system check
 	checkSystem := libagent.Check{
 		Key:          "system",
 		Collector:    collector,
@@ -39,6 +43,18 @@ func main() {
 		Fn:           CheckSystem,
 	}
 	go checkSystem.Plan(quit)
+
+	// syslog check
+	checkSyslog := libagent.Check{
+		Key:          "syslog",
+		Collector:    collector,
+		Asset:        asset,
+		IntervalEnv:  "CHECK_SYSLOG_INTERVAL",
+		NoCount:      false,
+		SetTimestamp: false,
+		Fn:           CheckSyslog,
+	}
+	go checkSyslog.Plan(quit)
 
 	// Wait for quit
 	<-quit
