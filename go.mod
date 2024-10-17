@@ -2,7 +2,7 @@ module github.com/infrasonar/linux-agent
 
 go 1.22.2
 
-require github.com/infrasonar/go-libagent v0.1.1
+require github.com/infrasonar/go-libagent v0.2.1
 
 require (
 	github.com/c9s/goprocinfo v0.0.0-20210130143923-c95fcf8c64a8

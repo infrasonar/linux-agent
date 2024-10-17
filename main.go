@@ -40,6 +40,17 @@ func main() {
 	}
 	go checkSystem.Plan(quit)
 
+	checkDisk := libagent.Check{
+		Key:          "disk",
+		Collector:    collector,
+		Asset:        asset,
+		IntervalEnv:  "CHECK_DISK_INTERVAL",
+		NoCount:      false,
+		SetTimestamp: false,
+		Fn:           CheckDisk,
+	}
+	go checkDisk.Plan(quit)
+
 	// Wait for quit
 	<-quit
 }
