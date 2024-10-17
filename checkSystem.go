@@ -50,7 +50,7 @@ func readLoadAvg(state map[string][]map[string]any, check *libagent.Check) error
 
 func CheckSystem(check *libagent.Check) (map[string][]map[string]any, error) {
 	state := map[string][]map[string]any{}
-	var err error = nil
+	var err error
 
 	if e := readUptime(state); e != nil {
 		err = e

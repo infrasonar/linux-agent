@@ -77,7 +77,7 @@ func readDiskStats(state map[string][]map[string]any) error {
 
 func CheckDisk(_ *libagent.Check) (map[string][]map[string]any, error) {
 	state := map[string][]map[string]any{}
-	var err error = nil
+	var err error
 
 	if err = readMounts(state); err != nil {
 		return nil, err
