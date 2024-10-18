@@ -12,9 +12,14 @@ func readMemInfo(state map[string][]map[string]any) error {
 	}
 
 	item := map[string]any{
-		"name":     "memInfo",
-		"memFree":  mem.MemFree,
-		"memTotal": mem.MemTotal,
+		"name":     	"memInfo",
+		"memFree":  	mem.MemFree,
+		"memTotal": 	mem.MemTotal,
+		"memAvailable": mem.MemAvailable,
+		"buffers":  	mem.Buffers,
+		"cached":  		mem.Cached,
+		"swapTotal":  	mem.SwapTotal,
+		"swapFree":  	mem.SwapFree,
 	}
 
 	state["memInfo"] = []map[string]any{item}
