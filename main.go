@@ -77,6 +77,18 @@ func main() {
 	}
 	go checkNetwork.Plan(quit)
 
+	checkProcess := libagent.Check{
+		Key:             "process",
+		Collector:       collector,
+		Asset:           asset,
+		IntervalEnv:     "CHECK_PROCESS_INTERVAL",
+		DefaultInterval: 300,
+		NoCount:         false,
+		SetTimestamp:    false,
+		Fn:              CheckProcess,
+	}
+	go checkProcess.Plan(quit)
+
 	// Wait for quit
 	<-quit
 }

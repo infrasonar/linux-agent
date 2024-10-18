@@ -1,0 +1,53 @@
+package main
+
+import (
+	"github.com/c9s/goprocinfo/linux"
+	"github.com/infrasonar/go-libagent"
+)
+
+func readProcess(state map[string][]map[string]any) error {
+	pids, err := linux.ListPID("/proc", 1000)
+	if err != nil {
+		return err
+	}
+
+	items := []map[string]any{}
+
+	for _, pid := range pids {
+		process, err := linux.ReadProcess(pid, "/proc")
+
+		if err == nil {
+			items = append(items, map[string]any{
+				"name":        process.Status.Name,
+				"pid":         process.Status.Pid,
+				"state":       process.Status.State,
+				"threads":     process.Status.Threads,
+				"vmPeak":      process.Status.VmPeak,
+				"vmSize":      process.Status.VmSize,
+				"vmLck":       process.Status.VmLck,
+				"vmHWM":       process.Status.VmHWM,
+				"vmRSS":       process.Status.VmRSS,
+				"vmData":      process.Status.VmData,
+				"vmStk":       process.Status.VmStk,
+				"vmExe":       process.Status.VmExe,
+				"vmLib":       process.Status.VmLib,
+				"vmPTE":       process.Status.VmPTE,
+				"vmSwap":      process.Status.VmSwap,
+			})
+		}
+	}
+
+	state["process"] = items
+	return nil
+}
+
+func CheckProcess(check *libagent.Check) (map[string][]map[string]any, error) {
+	state := map[string][]map[string]any{}
+
+	err := readProcess(state)
+	if err != nil {
+		return nil, err
+	}
+
+	return state, nil
+}
