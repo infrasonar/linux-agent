@@ -24,7 +24,6 @@ func readProcess(state map[string][]map[string]any) error {
 
 		if ct > 0 {
 			name = fmt.Sprintf("%s_%d", name, ct)
-			fmt.Println(name)
 		}
 
 		if err == nil {
