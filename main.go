@@ -53,6 +53,18 @@ func main() {
 	}
 	go checkDisk.Plan(quit)
 
+	CheckMemory := libagent.Check{
+		Key:             "memory",
+		Collector:       collector,
+		Asset:           asset,
+		IntervalEnv:     "CHECK_MEMORY_INTERVAL",
+		DefaultInterval: 300,
+		NoCount:         false,
+		SetTimestamp:    false,
+		Fn:              CheckMemory,
+	}
+	go CheckMemory.Plan(quit)
+
 	// Wait for quit
 	<-quit
 }
