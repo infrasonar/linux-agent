@@ -30,24 +30,26 @@ func main() {
 
 	// Create and plan checks
 	checkSystem := libagent.Check{
-		Key:          "system",
-		Collector:    collector,
-		Asset:        asset,
-		IntervalEnv:  "CHECK_SYSTEM_INTERVAL",
-		NoCount:      false,
-		SetTimestamp: false,
-		Fn:           CheckSystem,
+		Key:             "system",
+		Collector:       collector,
+		Asset:           asset,
+		IntervalEnv:     "CHECK_SYSTEM_INTERVAL",
+		DefaultInterval: 300,
+		NoCount:         false,
+		SetTimestamp:    false,
+		Fn:              CheckSystem,
 	}
 	go checkSystem.Plan(quit)
 
 	checkDisk := libagent.Check{
-		Key:          "disk",
-		Collector:    collector,
-		Asset:        asset,
-		IntervalEnv:  "CHECK_DISK_INTERVAL",
-		NoCount:      false,
-		SetTimestamp: false,
-		Fn:           CheckDisk,
+		Key:             "disk",
+		Collector:       collector,
+		Asset:           asset,
+		IntervalEnv:     "CHECK_DISK_INTERVAL",
+		DefaultInterval: 300,
+		NoCount:         false,
+		SetTimestamp:    false,
+		Fn:              CheckDisk,
 	}
 	go checkDisk.Plan(quit)
 
