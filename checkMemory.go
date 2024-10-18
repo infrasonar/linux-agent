@@ -23,11 +23,11 @@ func readMemory(state map[string][]map[string]any) error {
 
 func CheckMemory(check *libagent.Check) (map[string][]map[string]any, error) {
 	state := map[string][]map[string]any{}
-	var err error
 
-	if e := readMemory(state); e != nil {
-		err = e
+	err := readMemory(state)
+	if err != nil {
+		return nil, err
 	}
 
-	return state, err
+	return state, nil
 }
