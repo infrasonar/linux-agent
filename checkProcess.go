@@ -3,22 +3,33 @@ package main
 import (
 	"github.com/c9s/goprocinfo/linux"
 	"github.com/infrasonar/go-libagent"
+	"fmt"
 )
 
 func readProcess(state map[string][]map[string]any) error {
-	pids, err := linux.ListPID("/proc", 1000)
+	pids, err := linux.ListPID("/proc", 1000)  // TODO which limit
 	if err != nil {
 		return err
 	}
 
+	names := map[string]int{}
 	items := []map[string]any{}
 
 	for _, pid := range pids {
 		process, err := linux.ReadProcess(pid, "/proc")
 
+		name := process.Status.Name  // TODO replace / character?
+		ct := names[process.Status.Name]
+		names[process.Status.Name] += 1
+
+		if ct > 0 {
+			name = fmt.Sprintf("%s_%d", name, ct)
+			fmt.Println(name)
+		}
+
 		if err == nil {
 			items = append(items, map[string]any{
-				"name":        process.Status.Name,
+				"name":        name,
 				"pid":         process.Status.Pid,
 				"state":       process.Status.State,
 				"threads":     process.Status.Threads,
