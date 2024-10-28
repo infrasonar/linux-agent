@@ -59,5 +59,10 @@ func CheckSystem(check *libagent.Check) (map[string][]map[string]any, error) {
 		err = e
 	}
 
+	state["agent"] = []map[string]any{{
+		"name":    "linux",
+		"version": version,
+	}}
+
 	return state, err
 }
