@@ -65,6 +65,18 @@ func main() {
 	}
 	go checkMemInfo.Plan(quit)
 
+	checkNetwork := libagent.Check{
+		Key:             "network",
+		Collector:       collector,
+		Asset:           asset,
+		IntervalEnv:     "CHECK_NETWORK_INTERVAL",
+		DefaultInterval: 300,
+		NoCount:         false,
+		SetTimestamp:    false,
+		Fn:              CheckNetwork,
+	}
+	go checkNetwork.Plan(quit)
+
 	// Wait for quit
 	<-quit
 }
