@@ -48,7 +48,7 @@ $ sudo touch /etc/systemd/system/infrasonar-linux-agent.service
 $ sudo chmod 664 /etc/systemd/system/infrasonar-linux-agent.service
 ```
 
-Using you favorite editor, add the content below to the file created
+**1. Using you favorite editor, add the content below to the file created:**
 
 ```
 [Unit]
@@ -63,33 +63,34 @@ ExecStart=/usr/sbin/infrasonar-linux-agent
 WantedBy=multi-user.target
 ```
 
-Next, create the file `/etc/infrasonar/linux-agent.env` with at least:
+**2. Create the file `/etc/infrasonar/linux-agent.env` with at least:**
 
 ```
 TOKEN=<YOUR TOKEN HERE>
 ```
 
-Optionaly, set environment variable like `ASSET_ID` and `STORAGE_PATH` _(see all [environment variables](#environment_variables) in the table above)_.
+Optionaly, set environment variable like `ASSET_ID` and `STORAGE_PATH` _(see all [environment variables](#environment-variables) in the table above)_.
 
-When finished, reload systemd:
+**3. Reload systemd:**
 
 ```bash
 $ sudo systemctl daemon-reload
 ```
 
-Install the service
+**4. Install the service:**
+
 ```bash
 $ sudo systemctl enable infrasonar-linux-agent
 ```
 
-You may want to start/stop or view the status
+**Finally, you may want to start/stop or view the status:**
 ```bash
 $ sudo systemctl start infrasonar-linux-agent
 $ sudo systemctl stop infrasonar-linux-agent
 $ sudo systemctl status infrasonar-linux-agent
 ```
 
-View logging:
+**View logging:**
 ```bash
 $ journalctl -u infrasonar-linux-agent
 ```
