@@ -14,7 +14,7 @@ Environment                 | Default                       | Description
 `ASSET_NAME`                | _none_                        | Initial Asset Name. This will only be used at the announce. Once the asset is created, `ASSET_NAME` will be ignored.
 `ASSET_ID`                  | _none_                        | Asset Id _(If not given, the asset Id will be stored and loaded from file)_.
 `API_URI`                   | https://api.infrasonar.com    | InfraSonar API.
-`SKIP_VERIFY`				| _none_						| Set to `1` or something else to skip certificate validation.
+`SKIP_VERIFY`               | _none_                        | Set to `1` or something else to skip certificate validation.
 `CHECK_SYSTEM_INTERVAL`     | `300`                         | Interval in seconds for the `system` check.
 
 
@@ -56,16 +56,22 @@ Description=InfraSonar Linux Agent
 Wants=network.target
 
 [Service]
-Environment="TOKEN=<YOUR TOKEN HERE>"
-# Environment="ASSET_ID=<YOUR ASSET ID>"
-# Environment="STORAGE_PATH=<PATH_TO_STORE_ASSET_FILE>"
+EnvironmentFile="/etc/infrasonar/linux-agent.env"
 ExecStart=/usr/sbin/infrasonar-linux-agent
 
 [Install]
 WantedBy=multi-user.target
 ```
 
-Reload systemd
+Next, create the file `/etc/infrasonar/linux-agent.env` with at least:
+
+```
+TOKEN=<YOUR TOKEN HERE>
+```
+
+Optionaly, set environment variable like `ASSET_ID` and `STORAGE_PATH` _(see all [environment variables](#environment_variables) in the table above)_.
+
+When finished, reload systemd:
 
 ```bash
 $ sudo systemctl daemon-reload
