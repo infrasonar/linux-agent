@@ -56,7 +56,7 @@ Description=InfraSonar Linux Agent
 Wants=network.target
 
 [Service]
-EnvironmentFile="/etc/infrasonar/linux-agent.env"
+EnvironmentFile=/etc/infrasonar/linux-agent.env
 ExecStart=/usr/sbin/infrasonar-linux-agent
 
 [Install]
