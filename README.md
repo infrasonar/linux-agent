@@ -69,7 +69,7 @@ WantedBy=multi-user.target
 TOKEN=<YOUR TOKEN HERE>
 ```
 
-Optionaly, add environment variable to the `linux-agent.env` file for settings like `ASSET_ID` and `STORAGE_PATH` _(see all [environment variables](#environment-variables) in the table above)_.
+Optionaly, add environment variable to the `linux-agent.env` file for settings like `ASSET_ID` or `STORAGE_PATH` _(see all [environment variables](#environment-variables) in the table above)_.
 
 **3. Reload systemd:**
 
