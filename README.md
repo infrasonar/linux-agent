@@ -9,7 +9,7 @@ Documentation: https://docs.infrasonar.com/collectors/agents/linux/
 
 Environment                 | Default                       | Description
 ----------------------------|-------------------------------|-------------------
-`STORAGE_PATH`              | `HOME/.infrasonar/`           | Path where files are stored _(not used when `ASSET_ID` is set)_.
+`CONFIG_PATH`       		| `/etc/infrasonar` 			| Path where configuration files are loaded and stored _(note: for a user, the `$HOME` path will be used instead of `/etc`)_
 `TOKEN`                     | _required_                    | Token used for authentication _(This MUST be a container token)_.
 `ASSET_NAME`                | _none_                        | Initial Asset Name. This will only be used at the announce. Once the asset is created, `ASSET_NAME` will be ignored.
 `ASSET_ID`                  | _none_                        | Asset Id _(If not given, the asset Id will be stored and loaded from file)_.
@@ -69,7 +69,7 @@ WantedBy=multi-user.target
 TOKEN=<YOUR TOKEN HERE>
 ```
 
-Optionaly, add environment variable to the `linux-agent.env` file for settings like `ASSET_ID` or `STORAGE_PATH` _(see all [environment variables](#environment-variables) in the table above)_.
+Optionaly, add environment variable to the `linux-agent.env` file for settings like `ASSET_ID` or `CONFIG_PATH` _(see all [environment variables](#environment-variables) in the table above)_.
 
 **3. Reload systemd:**
 
