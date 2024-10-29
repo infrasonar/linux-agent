@@ -30,7 +30,7 @@ Download the latest release:
 $ wget https://github.com/infrasonar/linux-agent/releases/download/v0.1.0/linux-agent
 ```
 
-> The pre-build binary is build for the **linux-amd64** platform, for other platforms build from source using the command: `CGO_ENABLED=0 go build -o linux-agent`
+> _The pre-build binary is build for the **linux-amd64** platform. For other platforms build from source using the command:_ `CGO_ENABLED=0 go build -o linux-agent`
 
 Ensure the binary is executable:
 ```
