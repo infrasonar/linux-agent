@@ -20,7 +20,7 @@ Environment                 | Default                       | Description
 
 ## Build
 ```
-CGO_ENABLED=0 go build -o linux-agent
+CGO_ENABLED=0 go build -trimpath -o linux-agent
 ```
 
 ## Installation
