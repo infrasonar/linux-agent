@@ -27,7 +27,7 @@ CGO_ENABLED=0 go build -trimpath -o linux-agent
 
 Download the latest release:
 ```bash
-$ wget https://github.com/infrasonar/linux-agent/releases/download/v0.1.0/linux-agent
+wget https://github.com/infrasonar/linux-agent/releases/download/v0.1.0/linux-agent
 ```
 
 > _The pre-build binary is build for the **linux-amd64** platform. For other platforms build from source using the command:_ `CGO_ENABLED=0 go build -o linux-agent`
@@ -40,14 +40,14 @@ chmod +x linux-agent
 Copy the binary to `/usr/sbin/infrasonar-linux-agent`
 
 ```
-$ sudo cp linux-agent /usr/sbin/infrasonar-linux-agent
+sudo cp linux-agent /usr/sbin/infrasonar-linux-agent
 ```
 
 ### Using Systemd
 
 ```bash
-$ sudo touch /etc/systemd/system/infrasonar-linux-agent.service
-$ sudo chmod 664 /etc/systemd/system/infrasonar-linux-agent.service
+sudo touch /etc/systemd/system/infrasonar-linux-agent.service
+sudo chmod 664 /etc/systemd/system/infrasonar-linux-agent.service
 ```
 
 **1. Using you favorite editor, add the content below to the file created:**
@@ -65,7 +65,13 @@ ExecStart=/usr/sbin/infrasonar-linux-agent
 WantedBy=multi-user.target
 ```
 
-**2. Create the file `/etc/infrasonar/linux-agent.env` with at least:**
+**2. Create the directory `/etc/infrasonar`**
+
+```bash
+sudo mkdir /etc/infrasonar
+```
+
+**3. Create the file `/etc/infrasonar/linux-agent.env` with at least:**
 
 ```
 TOKEN=<YOUR TOKEN HERE>
@@ -73,27 +79,27 @@ TOKEN=<YOUR TOKEN HERE>
 
 Optionaly, add environment variable to the `linux-agent.env` file for settings like `ASSET_ID` or `CONFIG_PATH` _(see all [environment variables](#environment-variables) in the table above)_.
 
-**3. Reload systemd:**
+**4. Reload systemd:**
 
 ```bash
-$ sudo systemctl daemon-reload
+sudo systemctl daemon-reload
 ```
 
-**4. Install the service:**
+**5. Install the service:**
 
 ```bash
-$ sudo systemctl enable infrasonar-linux-agent
+sudo systemctl enable infrasonar-linux-agent
 ```
 
 **Finally, you may want to start/stop or view the status:**
 ```bash
-$ sudo systemctl start infrasonar-linux-agent
-$ sudo systemctl stop infrasonar-linux-agent
-$ sudo systemctl status infrasonar-linux-agent
+sudo systemctl start infrasonar-linux-agent
+sudo systemctl stop infrasonar-linux-agent
+sudo systemctl status infrasonar-linux-agent
 ```
 
 **View logging:**
 ```bash
-$ journalctl -u infrasonar-linux-agent
+journalctl -u infrasonar-linux-agent
 ```
 
